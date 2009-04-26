@@ -1,13 +1,19 @@
 require 'rubygems/command'
 require 'rubygems/dependency'
+require 'rubygems/version_option'
 
 class Gem::Commands::OpenCommand < Gem::Command
+  include Gem::VersionOption
+  
   def initialize
-    super 'open', "Opens the gem's source directory with $EDITOR", :command => nil
+    super 'open', "Opens the gem's source directory with $EDITOR", :command => nil, :version=>Gem::Requirement.default
+    
     add_option('-c', '--command COMMAND',
                'Execute command at path of the rubygem') do |value, options|
       options[:command] = value
     end
+    
+    add_version_option
   end
   
   def arguments # :nodoc:
@@ -17,7 +23,7 @@ class Gem::Commands::OpenCommand < Gem::Command
   def execute    
     name = get_one_gem_name
     
-    dep = Gem::Dependency.new name, Gem::Requirement.default
+    dep = Gem::Dependency.new name, options[:version]
     specs = Gem.source_index.search dep
     
     if specs.length == 0
