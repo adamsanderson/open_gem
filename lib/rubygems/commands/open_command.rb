@@ -6,11 +6,19 @@ class Gem::Commands::OpenCommand < Gem::Command
   include Gem::VersionOption
   
   def initialize
-    super 'open', "Opens the gem's source directory with $EDITOR", :command => nil, :version=>Gem::Requirement.default
+    super 'open', "Opens the gem's source directory with $EDITOR", 
+      :command => nil, 
+      :version=>  Gem::Requirement.default,
+      :latest=>   false
     
     add_option('-c', '--command COMMAND',
                'Execute command at path of the rubygem') do |value, options|
       options[:command] = value
+    end
+    
+    add_option('-l', '--latest',
+               'If there are multiple versions, open the latest') do |value, options|
+      options[:latest] = true
     end
     
     add_version_option
@@ -29,7 +37,7 @@ class Gem::Commands::OpenCommand < Gem::Command
     if specs.length == 0
       say "Could not find '#{name}'"
       
-    elsif specs.length == 1
+    elsif specs.length == 1 || options[:latest]
       path = specs.last.full_gem_path
       
     else
