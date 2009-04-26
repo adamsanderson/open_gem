@@ -1,8 +1,9 @@
 require 'rubygems/command'
 require 'rubygems/dependency'
+require 'pp'
 class Gem::Commands::OpenCommand < Gem::Command
   def initialize
-    super 'open', "Opens the gem's source directory with $EDITOR"
+    super 'open', "Opens the gem's source directory with TextMate"
   end
   
   def arguments # :nodoc:
@@ -15,11 +16,9 @@ class Gem::Commands::OpenCommand < Gem::Command
     dep = Gem::Dependency.new name, Gem::Requirement.default
     specs = Gem.source_index.search dep
 
-    spec_tuples = specs.map do |spec|
-      [spec.name, spec.version, spec.original_platform, spec]
-    end
-    
-    say spec_tuples.inspect
+    # TODO: ask which to open:
+    path = specs.last.full_gem_path
+    say "opening '#{path}'"
   end
   
 end
