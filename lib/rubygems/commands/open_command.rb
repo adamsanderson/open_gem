@@ -20,9 +20,24 @@ class Gem::Commands::OpenCommand < Gem::Command
     dep = Gem::Dependency.new name, Gem::Requirement.default
     specs = Gem.source_index.search dep
     
-    # TODO: ask which to open:
-    path = specs.last.full_gem_path
+    if specs.length == 0
+      say "Could not find '#{name}'"
+      
+    elsif specs.length == 1
+      path = specs.last.full_gem_path
+      
+    else
+      choices = specs.map{|s|"#{s.name} #{s.version}"}
+      c,i = choose_from_list "Open which gem?", choices
+      path = specs[i].full_gem_path if i
+      
+    end
     
+    open_gem(path) if path
+  end
+  
+  private
+  def open_gem(path)
     editor = options[:command] || ENV['EDITOR']
     if !editor
       say "Either set $EDITOR, or use -c <command_name>"
@@ -30,5 +45,4 @@ class Gem::Commands::OpenCommand < Gem::Command
       system(editor, path)
     end
   end
-  
 end
