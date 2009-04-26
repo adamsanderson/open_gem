@@ -2,6 +2,7 @@ require 'rubygems/command'
 require 'rubygems/dependency'
 require 'rubygems/version_option'
 
+# OpenCommand will open a gem's source path
 class Gem::Commands::OpenCommand < Gem::Command
   include Gem::VersionOption
   
