@@ -1,6 +1,6 @@
 require 'rubygems/command'
 require 'rubygems/dependency'
-require 'pp'
+
 class Gem::Commands::OpenCommand < Gem::Command
   def initialize
     super 'open', "Opens the gem's source directory with TextMate"
@@ -18,7 +18,7 @@ class Gem::Commands::OpenCommand < Gem::Command
 
     # TODO: ask which to open:
     path = specs.last.full_gem_path
-    say "opening '#{path}'"
+    system('mate', path)
   end
   
 end
