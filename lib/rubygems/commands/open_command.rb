@@ -3,7 +3,7 @@ require 'rubygems/dependency'
 
 class Gem::Commands::OpenCommand < Gem::Command
   def initialize
-    super 'open', "Opens the gem's source directory with TextMate"
+    super 'open', "Opens the gem's source directory with $EDITOR"
   end
   
   def arguments # :nodoc:
@@ -18,7 +18,13 @@ class Gem::Commands::OpenCommand < Gem::Command
 
     # TODO: ask which to open:
     path = specs.last.full_gem_path
-    system('mate', path)
+    
+    editor = ENV['EDITOR']
+    if !editor
+      say "no editor set in $EDITOR"
+    else
+      system(editor, path)
+    end
   end
   
 end
