@@ -6,8 +6,8 @@ begin
   require 'jeweler'
   Jeweler::Tasks.new do |s|
     s.name = "open_gem"
-    s.description = "Easily open a ruby gem with the editor of your choice."
-    s.summary = "Easily open a ruby gem with the editor of your choice."
+    s.description = "Gem Command to easily open a ruby gem with the editor of your choice."
+    s.summary = "Gem Command to easily open a ruby gem with the editor of your choice."
     s.email = "netghost@gmail.com"
     s.homepage = "http://github.com/adamsanderson/open_gem"
     s.authors = ["Adam Sanderson"]
