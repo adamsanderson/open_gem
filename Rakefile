@@ -15,6 +15,10 @@ begin
     s.authors = ["Adam Sanderson"]
     s.has_rdoc = false
     s.files = FileList["[A-Z]*", "{bin,lib,test}/**/*"]
+    
+    # Testing
+    s.test_files = FileList["test/**/*_test.rb"]
+    s.add_development_dependency 'mocha', '~> 0.9.x'
   end
 
 rescue LoadError
@@ -27,4 +31,4 @@ Rake::TestTask.new do |t|
   t.verbose = false
 end
 
-task :default => :install
+task :default => :test

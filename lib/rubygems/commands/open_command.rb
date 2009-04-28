@@ -29,29 +29,32 @@ class Gem::Commands::OpenCommand < Gem::Command
     "GEMNAME       gem to open"
   end
 
-  def execute    
+  def execute
     name = get_one_gem_name
+    path = get_path(name)
     
+    open_gem(path) if path
+  end
+  
+  def get_path(name)
     dep = Gem::Dependency.new name, options[:version]
     specs = Gem.source_index.search dep
     
     if specs.length == 0
       say "Could not find '#{name}'"
+      return nil
       
     elsif specs.length == 1 || options[:latest]
-      path = specs.last.full_gem_path
+      return specs.last.full_gem_path
       
     else
       choices = specs.map{|s|"#{s.name} #{s.version}"}
       c,i = choose_from_list "Open which gem?", choices
-      path = specs[i].full_gem_path if i
+      return specs[i].full_gem_path if i
       
     end
-    
-    open_gem(path) if path
   end
-  
-  private
+
   def open_gem(path)
     editor = options[:command] || ENV['EDITOR']
     if !editor
