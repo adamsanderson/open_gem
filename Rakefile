@@ -18,7 +18,7 @@ begin
     
     # Testing
     s.test_files = FileList["test/**/*_test.rb"]
-    s.add_development_dependency 'mocha', '~> 0.9.x'
+    s.add_development_dependency 'mocha', '~> 0.9.5'
   end
 
 rescue LoadError
