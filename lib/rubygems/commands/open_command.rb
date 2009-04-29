@@ -60,7 +60,10 @@ class Gem::Commands::OpenCommand < Gem::Command
     if !editor
       say "Either set $EDITOR, or use -c <command_name>"
     else
-      system(editor, path)
+      success = system(editor, path)
+      if !success 
+        raise Gem::CommandLineError, "Could not run '#{editor} #{path}', exit code: #{$?.exitstatus}"
+      end
     end
   end
 end
