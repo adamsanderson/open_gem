@@ -7,7 +7,7 @@ class Gem::Commands::OpenCommand < Gem::Command
   include Gem::VersionOption
   
   def initialize
-    super 'open', "Opens the gem's source directory with $EDITOR", 
+    super 'open', "Opens the gem's source directory with $GEM_OPEN_EDITOR or $EDITOR", 
       :command => nil, 
       :version=>  Gem::Requirement.default,
       :latest=>   false
@@ -56,7 +56,7 @@ class Gem::Commands::OpenCommand < Gem::Command
   end
 
   def open_gem(path)
-    editor = options[:command] || ENV['EDITOR']
+    editor = options[:command] || ENV['GEM_OPEN_EDITOR'] || ENV['EDITOR']
     if !editor
       say "Either set $EDITOR, or use -c <command_name>"
     else
