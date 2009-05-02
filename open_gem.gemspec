@@ -2,11 +2,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{open_gem}
-  s.version = "1.1.0"
+  s.version = "1.2.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Adam Sanderson"]
-  s.date = %q{2009-04-28}
+  s.date = %q{2009-05-02}
   s.description = %q{      Open a gem's source directory with either the default editor, or a specified command.
 }
   s.email = %q{netghost@gmail.com}
