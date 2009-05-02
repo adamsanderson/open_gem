@@ -1,3 +1,5 @@
+require 'shellwords'
+
 require 'rubygems/command'
 require 'rubygems/dependency'
 require 'rubygems/version_option'
@@ -60,7 +62,9 @@ class Gem::Commands::OpenCommand < Gem::Command
     if !editor
       say "Either set $EDITOR, or use -c <command_name>"
     else
-      success = system(editor, path)
+      command_parts = Shellwords.shellwords(editor)
+      command_parts << path
+      success = system(*command_parts)
       if !success 
         raise Gem::CommandLineError, "Could not run '#{editor} #{path}', exit code: #{$?.exitstatus}"
       end

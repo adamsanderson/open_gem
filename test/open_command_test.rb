@@ -38,5 +38,4 @@ class Test_SomethingToTest < Test::Unit::TestCase
       command.invoke()
     end
   end
-  
 end
