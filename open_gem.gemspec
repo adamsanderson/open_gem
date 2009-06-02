@@ -17,6 +17,7 @@ Gem::Specification.new do |s|
     "README.markdown",
     "Rakefile",
     "VERSION.yml",
+    "lib/open_gem/common_options.rb",
     "lib/rubygems/commands/open_command.rb",
     "lib/rubygems/commands/read_command.rb",
     "lib/rubygems_plugin.rb",

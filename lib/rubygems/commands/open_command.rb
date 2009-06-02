@@ -26,21 +26,8 @@ class Gem::Commands::OpenCommand < Gem::Command
   end
   
   def get_path(name)
-    dep = Gem::Dependency.new name, options[:version]
-    specs = Gem.source_index.search dep
-    
-    if specs.length == 0
-      say "Could not find '#{name}'"
-      return nil
-      
-    elsif specs.length == 1 || options[:latest]
-      return specs.last.full_gem_path
-      
-    else
-      choices = specs.map{|s|"#{s.name} #{s.version}"}
-      c,i = choose_from_list "Open which gem?", choices
-      return specs[i].full_gem_path if i
-      
+    if spec = get_spec(name)
+      spec.full_gem_path
     end
   end
 

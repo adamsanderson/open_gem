@@ -14,5 +14,23 @@ module OpenGem
       end
     end
     
+    def get_spec(name)
+      dep = Gem::Dependency.new name, options[:version]
+      specs = Gem.source_index.search(dep).select{|spec| spec.has_rdoc?}
+
+      if specs.length == 0
+        say "Could not find docs for '#{name}'"
+        return nil
+
+      elsif specs.length == 1 || options[:latest]
+        return specs.last
+
+      else
+        choices = specs.map{|s|"#{s.name} #{s.version}"}
+        c,i = choose_from_list "Open which gem?", choices
+        return specs[i] if i
+
+      end
+    end
   end
 end
