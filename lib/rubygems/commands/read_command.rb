@@ -5,7 +5,7 @@ class Gem::Commands::ReadCommand < Gem::Command
   
   def initialize
     super 'read', "Opens the gem's documentation", 
-      :command => 'open', 
+      :command => nil, 
       :version=>  Gem::Requirement.default,
       :latest=>   false
     
@@ -39,9 +39,17 @@ class Gem::Commands::ReadCommand < Gem::Command
     Gem::DocManager.new(spec).generate_rdoc
   end
   
+  def rdoc_reader
+    options[:command] || case RUBY_PLATFORM.downcase
+      when /darwin/ then 'open'
+      when /mswin/  then 'explorer'
+      when /linux/  then 'firefox'
+      else               'firefox' # Come on, if you write ruby, you probably have firefox installed ;)
+    end
+  end
+  
   def read_gem(path)
-    editor = options[:command]
-    command_parts = Shellwords.shellwords(editor)
+    command_parts = Shellwords.shellwords(rdoc_reader)
     command_parts << path
     success = system(*command_parts)
     if !success 
