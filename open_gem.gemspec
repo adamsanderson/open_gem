@@ -6,7 +6,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Adam Sanderson"]
-  s.date = %q{2009-06-01}
+  s.date = %q{2009-06-02}
   s.description = %q{      Open a gem's source directory with either the default editor, or a specified command.
 }
   s.email = %q{netghost@gmail.com}
@@ -14,6 +14,7 @@ Gem::Specification.new do |s|
     "README.markdown"
   ]
   s.files = [
+    "CHANGELOG.markdown",
     "README.markdown",
     "Rakefile",
     "VERSION.yml",

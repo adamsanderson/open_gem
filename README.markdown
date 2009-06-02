@@ -5,6 +5,10 @@ Simply opens the specified gem in your default editor.
   
   gem open rails
   
+If you just want to read documentation you can do:
+
+  gem read activerecord
+  
 Installation:
 ------------
 OpenGem require rubygems 1.3.2 or higher.  You may need
