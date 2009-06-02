@@ -20,7 +20,7 @@ class Gem::Commands::ReadCommand < Gem::Command
 
   def execute
     name = get_one_gem_name
-    spec = get_spec name
+    spec = get_spec(name){|s| s.has_rdoc? }
     if spec && path = get_path(spec)
       if File.exists? path
         read_gem path

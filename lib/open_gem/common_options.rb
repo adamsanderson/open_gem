@@ -16,10 +16,13 @@ module OpenGem
     
     def get_spec(name)
       dep = Gem::Dependency.new name, options[:version]
-      specs = Gem.source_index.search(dep).select{|spec| spec.has_rdoc?}
+      specs = Gem.source_index.search(dep)
+      if block_given?
+        specs = specs.select{|spec| yield spec}
+      end
 
       if specs.length == 0
-        say "Could not find docs for '#{name}'"
+        say "'#{name}' is not available"
         return nil
 
       elsif specs.length == 1 || options[:latest]
