@@ -20,19 +20,23 @@ class Gem::Commands::ReadCommand < Gem::Command
 
   def execute
     name = get_one_gem_name
-    
-    if path = get_path(spec)
+    spec = get_spec name
+    if spec && path = get_path(spec)
       if File.exists? path
         read_gem path
-      else
-        say "The rdoc seems to be missing, TODO: generate"
+      elsif ask_yes_no "The rdoc seems to be missing, would you like to generate one?", true
+        generate_rdoc spec
+        read_gem path
       end
     end
   end
   
-  def get_path(name)
-    spec = get_spec name
-    File.join(spec.installation_path, "doc", spec.full_name, 'rdoc','index.html') if spec
+  def get_path(spec)
+    File.join(spec.installation_path, "doc", spec.full_name, 'rdoc','index.html')
+  end
+  
+  def generate_rdoc spec
+    Gem::DocManager.new(spec).generate_rdoc
   end
   
   def read_gem(path)
