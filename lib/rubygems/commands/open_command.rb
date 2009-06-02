@@ -1,11 +1,6 @@
-require 'shellwords'
-
-require 'rubygems/command'
-require 'rubygems/dependency'
-require 'rubygems/version_option'
-
 # OpenCommand will open a gem's source path
 class Gem::Commands::OpenCommand < Gem::Command
+  include OpenGem::CommonOptions
   include Gem::VersionOption
   
   def initialize
@@ -14,16 +9,8 @@ class Gem::Commands::OpenCommand < Gem::Command
       :version=>  Gem::Requirement.default,
       :latest=>   false
     
-    add_option('-c', '--command COMMAND',
-               'Execute command at path of the rubygem') do |value, options|
-      options[:command] = value
-    end
-    
-    add_option('-l', '--latest',
-               'If there are multiple versions, open the latest') do |value, options|
-      options[:latest] = true
-    end
-    
+    add_command_option
+    add_latest_version_option
     add_version_option
   end
   

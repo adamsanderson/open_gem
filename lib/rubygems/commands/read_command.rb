@@ -1,11 +1,6 @@
-require 'shellwords'
-
-require 'rubygems/command'
-require 'rubygems/dependency'
-require 'rubygems/version_option'
-
-# OpenCommand will open a gem's source path
+# ReadCommand will open a gem's rdoc
 class Gem::Commands::ReadCommand < Gem::Command
+  include OpenGem::CommonOptions
   include Gem::VersionOption
   
   def initialize
@@ -14,21 +9,13 @@ class Gem::Commands::ReadCommand < Gem::Command
       :version=>  Gem::Requirement.default,
       :latest=>   false
     
-    add_option('-c', '--command COMMAND',
-               'Execute command at path of the rubygem') do |value, options|
-      options[:command] = value
-    end
-    
-    add_option('-l', '--latest',
-               'If there are multiple versions, open the latest') do |value, options|
-      options[:latest] = true
-    end
-    
+    add_command_option "Application to read rdoc with"
+    add_latest_version_option
     add_version_option
   end
   
   def arguments # :nodoc:
-    "GEMNAME       gem to open"
+    "GEMNAME       gem to read"
   end
 
   def execute
