@@ -53,7 +53,7 @@ class Gem::Commands::ReadCommand < Gem::Command
     command_parts << path
     success = system(*command_parts)
     if !success 
-      raise Gem::CommandLineError, "Could not run '#{editor} #{path}', exit code: #{$?.exitstatus}"
+      raise Gem::CommandLineError, "Could not run '#{rdoc_reader} #{path}', exit code: #{$?.exitstatus}"
     end
   end
   
