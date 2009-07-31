@@ -15,7 +15,7 @@ module OpenGem
     end
     
     def get_spec(name)
-      dep = Gem::Dependency.new name, options[:version]
+      dep = Gem::Dependency.new /#{Regexp.escape name}/, options[:version]
       specs = Gem.source_index.search(dep)
       if block_given?
         specs = specs.select{|spec| yield spec}
