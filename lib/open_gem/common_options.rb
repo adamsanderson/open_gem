@@ -34,7 +34,7 @@ module OpenGem
           pattern = /#{Regexp.escape name}/
           get_spec(pattern)
         else
-          say "'#{name}' is not available"
+          say "#{name.inspect} is not available"
           return nil
         end
 
