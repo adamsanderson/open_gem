@@ -12,6 +12,7 @@ class Gem::Commands::OpenCommand < Gem::Command
     add_command_option
     add_latest_version_option
     add_version_option
+    add_exact_match_option
   end
   
   def arguments # :nodoc:
