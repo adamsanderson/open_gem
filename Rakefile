@@ -12,6 +12,7 @@ begin
     DESC
     s.email = "netghost@gmail.com"
     s.homepage = "http://github.com/adamsanderson/open_gem"
+    s.rubyforge_project = "opengem"
     s.authors = ["Adam Sanderson"]
     s.has_rdoc = false
     s.files = FileList["[A-Z]*", "{bin,lib,test}/**/*"]

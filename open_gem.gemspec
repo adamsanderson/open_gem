@@ -30,6 +30,7 @@ Gem::Specification.new do |s|
   s.homepage = %q{http://github.com/adamsanderson/open_gem}
   s.rdoc_options = ["--charset=UTF-8"]
   s.require_paths = ["lib"]
+  s.rubyforge_project = %q{opengem}
   s.rubygems_version = %q{1.3.5}
   s.summary = %q{Gem Command to easily open a ruby gem with the editor of your choice.}
   s.test_files = [
