@@ -1,5 +1,8 @@
 OpenGem
 ========
+...
+---
+* Updating to use GemCutter to host gems now...
 
 1.3
 ----

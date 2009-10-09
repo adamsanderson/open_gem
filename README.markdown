@@ -20,10 +20,10 @@ Just install like any normal gem:
 
     gem install open_gem
 
-Or for the edge version on GitHub:
+Or for the edge version use GemCutter.org:
     
-    gem sources -a http://gems.github.com
-    gem install adamsanderson-open_gem
+    gem sources -a http://gemcutter.org
+    gem install open_gem
 
 For more help: 
 
