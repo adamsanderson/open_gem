@@ -1,5 +1,9 @@
 OpenGem
 ========
+1.5
+---
+* Respect the VISIAL environment variable above EDITOR.
+
 ...
 ---
 * Updating to use GemCutter to host gems now...
