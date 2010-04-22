@@ -1,3 +1,4 @@
+require 'launchy'
 # ReadCommand will open a gem's rdoc
 class Gem::Commands::ReadCommand < Gem::Command
   include OpenGem::CommonOptions
@@ -40,21 +41,16 @@ class Gem::Commands::ReadCommand < Gem::Command
     Gem::DocManager.new(spec).generate_rdoc
   end
   
-  def rdoc_reader
-    options[:command] || case RUBY_PLATFORM.downcase
-      when /darwin/ then 'open'
-      when /mswin/  then 'explorer'
-      when /linux/  then 'firefox'
-      else               'firefox' # Come on, if you write ruby, you probably have firefox installed ;)
-    end
-  end
-  
   def read_gem(path)
-    command_parts = Shellwords.shellwords(rdoc_reader)
-    command_parts << path
-    success = system(*command_parts)
-    if !success 
-      raise Gem::CommandLineError, "Could not run '#{rdoc_reader} #{path}', exit code: #{$?.exitstatus}"
+    if options[:command]
+      command_parts = Shellwords.shellwords(options[:command])
+      command_parts << path
+      success = system(*command_parts)
+      if !success 
+        raise Gem::CommandLineError, "Could not run '#{rdoc_reader} #{path}', exit code: #{$?.exitstatus}"
+      end
+    else
+      Launchy::Browser.run("file://"+path)
     end
   end
   
