@@ -33,9 +33,9 @@ class Gem::Commands::OpenCommand < Gem::Command
   end
 
   def open_gem(path)
-    editor = options[:command] || ENV['GEM_OPEN_EDITOR'] || ENV['EDITOR']
+    editor = options[:command] || ENV['GEM_OPEN_EDITOR'] || ENV['VISUAL'] || ENV['EDITOR']
     if !editor
-      say "Either set $EDITOR, or use -c <command_name>"
+      say "Either set $GEM_OPEN_EDITOR, $VISUAL, $EDITOR, or use -c <command_name>"
     else
       command_parts = Shellwords.shellwords(editor)
       command_parts << path
