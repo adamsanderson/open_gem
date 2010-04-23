@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Adam Sanderson"]
-  s.date = %q{2010-04-22}
+  s.date = %q{2010-04-23}
   s.description = %q{      Open a gem's source directory with either the default editor, or a specified command.
 }
   s.email = %q{netghost@gmail.com}
@@ -27,6 +27,7 @@ Gem::Specification.new do |s|
      "lib/rubygems_plugin.rb",
      "test/open_command_test.rb"
   ]
+  s.has_rdoc = false
   s.homepage = %q{http://github.com/adamsanderson/open_gem}
   s.rdoc_options = ["--charset=UTF-8"]
   s.require_paths = ["lib"]
