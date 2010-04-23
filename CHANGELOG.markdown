@@ -1,10 +1,11 @@
 OpenGem
 ========
-1.5
+1.4.2
 ---
-* Respect the VISIAL environment variable above EDITOR.
+* Respect the VISUAL environment variable above EDITOR. (cwninja)
+* Use Launchy gem to read rdocs (ngauthier)
 
-...
+1.4
 ---
 * Updating to use GemCutter to host gems now...
 
