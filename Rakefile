@@ -19,7 +19,7 @@ begin
     
     # Testing
     s.test_files = FileList["test/**/*_test.rb"]
-    s.add_dependency 'launchy', '~> 0.3.5'
+    s.add_dependency 'launchy', '~> 0.4'
     s.add_development_dependency 'mocha', '~> 0.9.5'
   end
 
