@@ -9,3 +9,4 @@ require 'open_gem/common_options'
 
 Gem::CommandManager.instance.register_command :open
 Gem::CommandManager.instance.register_command :read
+Gem::CommandManager.instance.register_command :shell

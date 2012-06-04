@@ -9,6 +9,10 @@ If you just want to read documentation you can do:
 
   gem read activerecord
   
+If you just want to browse the source code in a shell you can do:
+
+  gem shell activerecord
+  
 Installation:
 ------------
 OpenGem require rubygems 1.3.6 or higher.  You may need
