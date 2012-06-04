@@ -13,7 +13,6 @@ class Gem::Commands::ReadCommand < Gem::Command
     add_command_option "Application to read rdoc with"
     add_latest_version_option
     add_version_option
-    add_exact_match_option
   end
   
   def arguments # :nodoc:

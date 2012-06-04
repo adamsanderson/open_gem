@@ -14,29 +14,16 @@ module OpenGem
       end
     end
     
-    def add_exact_match_option
-      add_option('-x', '--exact',
-                 'Only list exact matches') do |value, options|
-        options[:exact] = true
-      end
-    end
-    
     def get_spec(name)
       dep = Gem::Dependency.new(name, options[:version])
-      specs = Gem.source_index.search(dep)
+      specs = Gem::Specification.find_all_by_name(name,options[:version])
       if block_given?
         specs = specs.select{|spec| yield spec}
       end
 
       if specs.length == 0
-        # If we have not tried to do a pattern match yet, fall back on it.
-        if(!options[:exact] && !name.is_a?(Regexp))
-          pattern = /#{Regexp.escape name}/
-          get_spec(pattern)
-        else
-          say "#{name.inspect} is not available"
-          return nil
-        end
+        say "#{name.inspect} is not available"
+        return nil
 
       elsif specs.length == 1 || options[:latest]
         return specs.last
