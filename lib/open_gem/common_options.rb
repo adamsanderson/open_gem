@@ -31,7 +31,7 @@ module OpenGem
       if specs.length == 0
         # If we have not tried to do a pattern match yet, fall back on it.
         if(!options[:exact] && !name.is_a?(Regexp))
-          pattern = /#{Regexp.escape name}/
+          pattern = /#{(Regexp.escape name).gsub(/\\-|_/, '(\\-|_|)')}/
           get_spec(pattern)
         else
           say "#{name.inspect} is not available"
