@@ -7,7 +7,7 @@ Gem::Specification.new do |s|
   s.name = "open_gem"
   s.version = "1.5.0"
 
-  s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
+  s.required_rubygems_version = Gem::Requirement.new(">= 1.8.0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Adam Sanderson"]
   s.date = "2014-02-21"
   s.description = "      Open a gem's source directory with either the default editor, or a specified command.\n"
@@ -17,7 +17,6 @@ Gem::Specification.new do |s|
   ]
   s.files = [
     "CHANGELOG.markdown",
-    "Gemfile.lock",
     "README.markdown",
     "Rakefile",
     "VERSION.yml",

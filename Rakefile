@@ -16,10 +16,11 @@ begin
     s.authors = ["Adam Sanderson"]
     s.has_rdoc = false
     s.files = FileList["[A-Z]*", "{bin,lib,test}/**/*"]
+    s.required_rubygems_version = ">= 1.8.0"
+    s.add_dependency 'launchy', '~> 2.0'
 
     # Testing
     s.test_files = FileList["test/**/*_test.rb"]
-    s.add_dependency 'launchy', '~> 2.0'
     s.add_development_dependency 'mocha', '~> 0.9.5'
   end
 
