@@ -1,6 +1,6 @@
 require 'rake'
 require 'rake/testtask'
-require 'rake/rdoctask'
+require 'rdoc/task'
 
 begin
   require 'jeweler'
@@ -16,10 +16,10 @@ begin
     s.authors = ["Adam Sanderson"]
     s.has_rdoc = false
     s.files = FileList["[A-Z]*", "{bin,lib,test}/**/*"]
-    
+
     # Testing
     s.test_files = FileList["test/**/*_test.rb"]
-    s.add_dependency 'launchy', '~> 0.3.5'
+    s.add_dependency 'launchy', '~> 2.0'
     s.add_development_dependency 'mocha', '~> 0.9.5'
   end
 

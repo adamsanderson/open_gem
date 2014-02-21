@@ -13,17 +13,22 @@ module OpenGem
         options[:latest] = true
       end
     end
-    
+
     def add_exact_match_option
       add_option('-x', '--exact',
                  'Only list exact matches') do |value, options|
         options[:exact] = true
       end
     end
-    
+
     def get_spec(name)
-      dep = Gem::Dependency.new(name, options[:version])
-      specs = Gem.source_index.search(dep)
+
+      specs = Gem::Specification.find_all do |s|
+        (options[:exact] ? s.name == name :
+          (name.is_a?(Regexp) ? s.name =~ name : s.name.include?(name))) and
+         (options[:version] ? options[:version].satisfied_by?(s.version) : true)
+      end
+
       if block_given?
         specs = specs.select{|spec| yield spec}
       end
