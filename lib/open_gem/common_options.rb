@@ -22,11 +22,17 @@ module OpenGem
     end
 
     def get_spec(name)
-
+      version = options[:version] || Gem::Version.new(">= 0")
+      exact   = options[:exact]
+      
       specs = Gem::Specification.find_all do |s|
-        (options[:exact] ? s.name == name :
-          (name.is_a?(Regexp) ? s.name =~ name : s.name.include?(name))) and
-         (options[:version] ? options[:version].satisfied_by?(s.version) : true)
+        if name.is_a? String
+          name_match = s.name == name
+        else
+          name_match = s.name[name]
+        end
+        
+        name_match && version.satisfied_by?(s.version)
       end
 
       if block_given?
@@ -35,7 +41,7 @@ module OpenGem
 
       if specs.length == 0
         # If we have not tried to do a pattern match yet, fall back on it.
-        if(!options[:exact] && !name.is_a?(Regexp))
+        if(!exact && !name.is_a?(Regexp))
           pattern = /#{Regexp.escape name}/
           get_spec(pattern)
         else
