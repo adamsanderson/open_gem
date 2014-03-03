@@ -38,7 +38,9 @@ module OpenGem
       if block_given?
         specs = specs.select{|spec| yield spec}
       end
-
+      
+      specs = specs.sort
+      
       if specs.length == 0
         # If we have not tried to do a pattern match yet, fall back on it.
         if(!exact && !name.is_a?(Regexp))
