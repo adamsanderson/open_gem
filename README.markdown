@@ -11,8 +11,8 @@ If you just want to read documentation you can do:
   
 Installation:
 ------------
-OpenGem require rubygems 1.3.6 or higher.  You may need
-to update rubygems to take advantage of the new plugin support:
+OpenGem requires rubygems 1.8.0 or higher.  You may need
+to update rubygems:
 
     gem update --system
 

@@ -3,6 +3,7 @@ OpenGem
 1.5.0
 ---
 * Compatible with Rubygems 2.0+
+* Sort gems for `--latest` option
 
 1.4.2
 ---
