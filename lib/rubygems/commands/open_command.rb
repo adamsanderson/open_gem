@@ -43,9 +43,11 @@ class Gem::Commands::OpenCommand < Gem::Command
     else
       command_parts = Shellwords.shellwords(editor)
       command_parts << path
-      success = system(*command_parts)
-      if !success
-        raise Gem::CommandLineError, "Could not run '#{editor} #{path}', exit code: #{$?.exitstatus}"
+      Dir.chdir(path) do
+        success = system(*command_parts)
+        if !success
+          raise Gem::CommandLineError, "Could not run '#{editor} #{path}', exit code: #{$?.exitstatus}"
+        end
       end
     end
   end
